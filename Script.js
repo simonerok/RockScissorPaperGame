@@ -1,13 +1,12 @@
 window.addEventListener("DOMContentLoaded", init);
 let player = document.querySelector("div .player");
-let cpu = document.querySelector("#cpu");
+let cpu = document.querySelector("div .cpu");
 let buttonClicked;
-var Rockcounter = 0;
+
 /* START */
 function init() {
   console.log("init");
   ButtonClickable();
-  getRandomChoice();
     
 }
 
@@ -15,23 +14,14 @@ function init() {
 /* function getRandomChoice() {
   console.log("GetRandomChoice");
 
-}
+} */
 
-/* USER VALG */
-function userChoice() {
-  console.log("userChoice");
-}
+
+/* PLAYER VALG */
 function ButtonClickable() {
   const buttonContainer = document.querySelectorAll("#buttons button");
   buttonContainer.forEach(button => button.addEventListener("click", playerChoice));
 }
-
-
-/* COMPUTER VALG */
-function getRandomChoice() {
-  console.log("GetRandomChoice");
-}
-
 
 function playerChoice() {
   //when a specific button is pushed, show corresponding hand
@@ -41,10 +31,12 @@ function playerChoice() {
   document.querySelector(".chosen").classList.remove("chosen");
   this.classList.add("chosen");
 
- //if buttonCliked corressponds to data attribut, 
- //appendChild to player class so that image is visible
+  getRandomChoice();//call on cpuChoice of sign while running own animation
 
+  //if buttonClicked corressponds to data attribut add correct classes 
  if (buttonClicked == "signRock") {
+ 
+  //add and remove suitable css classes
   player.classList.remove("rock", "paper", "scissors");
   player.classList.remove("shake");
   player.offset;
@@ -52,12 +44,15 @@ function playerChoice() {
   player.offset;
   player.addEventListener("animationend", () =>{
   player.classList.remove("shake", "rock", "paper", "scissors");
-  player.classList.add("rock")
+  player.classList.add("rock");
+  getWinner();
   }
   );
   
  }
  else if (buttonClicked =="signPaper") {
+
+  //add and remove suitable css classes
   player.classList.remove("rock", "paper", "scissors");
   player.classList.remove("paper")
   player.classList.remove("shake");
@@ -66,12 +61,13 @@ function playerChoice() {
   player.offset;
   player.addEventListener("animationend", () =>{
     player.classList.remove("shake", "rock", "paper", "scissors");
-  player.classList.add("paper")
+  player.classList.add("paper");
+  getWinner();
   }
   );
  } 
  else
-  {
+  {//add and remove suitable css classes
   player.classList.remove("rock", "paper", "scissors");
   player.classList.remove("scissors")
   player.classList.remove("shake");
@@ -80,7 +76,8 @@ function playerChoice() {
   player.offset;
   player.addEventListener("animationend", () =>{
     player.classList.remove("shake", "rock", "paper", "scissors");
-  player.classList.add("scissors")
+  player.classList.add("scissors");
+  getWinner();
   }
   );
  }
@@ -88,6 +85,125 @@ function playerChoice() {
 }
 
 
+
+//******************** PLAY ROUND*****************/
+/* count score */
+let playerScore = 0;
+let cpuScore = 0;
+
+const choices = document.querySelectorAll(".buttons");
+const scores = document.getElementById("point");
+const restart = document.getElementById("PlayAgain_btn");
+
+/*
+function playRound() {
+  const userChoice = playerChoice();
+  const cpuChoice = getRandomChoice();
+  const winner = getWinner(userChoice, getRandomChoice);
+
+  console.log(userChoice, cpuChoice, winner, playerScore, cpuScore);
+}*/
+
+// Computer choice
+ let options = ["rock", "paper", "scissors"];
+ async function getRandomChoice() {
+ 
+  let cpuChoice = options[Math.floor(Math.random() * options.length)];
+console.log(cpuChoice);
+  if (cpuChoice == "rock") {
+    //add and remove suitable css classes
+    
+    cpu.classList.remove("rock", "paper", "scissors");
+    cpu.classList.remove("shake");
+    cpu.offset;
+    cpu.classList.add("shake");
+    cpu.offset;
+    cpu.addEventListener("animationend", () =>{
+    cpu.classList.remove("shake", "rock", "paper", "scissors");
+    cpu.classList.add("rock");
+    getWinner();
+    }
+    );
+    
+   }
+  else if (cpuChoice == "paper") {
+    //add and remove suitable css classes
+    
+    cpu.classList.remove("rock", "paper", "scissors");
+    cpu.classList.remove("shake");
+    cpu.offset;
+    cpu.classList.add("shake");
+    cpu.offset;
+    cpu.addEventListener("animationend", () =>{
+    cpu.classList.remove("shake", "rock", "paper", "scissors");
+    cpu.classList.add("paper");
+    getWinner();
+    }
+    );
+    
+   }
+  
+   else {console.log(cpuChoice);
+    //add and remove suitable css classes
+    cpu.classList.remove("rock", "paper", "scissors");
+    cpu.classList.remove("shake");
+    cpu.offset;
+    cpu.classList.add("shake");
+    cpu.offset;
+    cpu.addEventListener("animationend", () =>{
+    cpu.classList.remove("shake", "rock", "paper", "scissors");
+    cpu.classList.add("scissors");
+    getWinner();
+    }
+    );
+    
+   }
+  }
+
+
+// Get game winner
+function getWinner(buttonClicked, options) {
+  if (buttonClicked === options) {
+    return "draw";
+  } else if (buttonClicked === "rock") {
+    if (options === "paper") {
+      cpuScore++;
+      return "computer";
+    } else {
+      playerScore++;
+      return "player";
+    }
+  } else if (buttonClicked === "paper") {
+    if (options === "scissors") {
+      cpuScore++;
+      return "computer";
+    } else {
+      playerScore++;
+      return "player";
+    }
+  } else if (buttonClicked === "scissors") {
+    if (options === "rock") {
+      cpuScore++;
+      return "computer";
+    } else {
+      playerScore++;
+      return "player";
+    }
+  }
+  
+//   // all draw options
+//   if (buttonClicked  == "signPaper" && options == "scissors" || buttonClicked == "signRock" 
+//   && options == "paper" || buttonClicked =="signScissors" && options == "rock"){
+   
+//   }
+//   //if CPU wins conditions
+// else if (buttonClicked  == "signPaper" && options == "scissors" || buttonClicked == "signRock" 
+// && options == "paper" || buttonClicked =="signScissors" && options == "rock") {
+//   youLose();
+// }
+//  else {draw();}
+
+}
 //******************* TIMER ********************/
 //Sætter timer på 10 sek
 var setTime = 10;
@@ -101,60 +217,6 @@ var visTimer = setInterval(function () {
   }
   setTime -= 1;
 }, 1000);
-
-//******************** PLAY ROUND*****************/
-/* count score */
-let playerScore = 0;
-let cpuScore = 0;
-
-const choices = document.querySelectorAll(".buttons");
-const scores = document.getElementById("point");
-const restart = document.getElementById("PlayAgain_btn");
-
-function playRound() {
-  const playerChoice = userChoice();
-  const cpuChoice = getRandomChoice();
-  const winner = getWinner(userChoice, getRandomChoice);
-
-  console.log(userChoice, cpuChoice, winner, playerScore, cpuScore);
-}
-
-// Computer choice
-function getRandomChoice() {
-  let options = ["rock", "paper", "scissors"];
-  return options[Math.floor(Math.random() * options.length)];
-}
-
-// Get game winner
-function getWinner(p, c) {
-  if (p === c) {
-    return "draw";
-  } else if (p === "rock") {
-    if (c === "paper") {
-      cpuScore++;
-      return "computer";
-    } else {
-      playerScore++;
-      return "player";
-    }
-  } else if (p === "paper") {
-    if (c === "scissors") {
-      cpuScore++;
-      return "computer";
-    } else {
-      playerScore++;
-      return "player";
-    }
-  } else if (p === "scissors") {
-    if (c === "rock") {
-      cpuScore++;
-      return "computer";
-    } else {
-      playerScore++;
-      return "player";
-    }
-  }
-}
 
 // Show score
 function showScore() {
@@ -187,19 +249,21 @@ if (playerScore <= 3) {
 function youLose() {
   console.log("youLose");
   document.querySelector("#lose").classList.remove("hidden");
-  document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
+  document.querySelector("#playAgain").classList.remove("hidden");
+  document.querySelector("#playAgain").addEventListener("click", init);
 }
 
 //****************** WIN SCREEN ***************** //
 function youWin() {
   console.log("youWin");
   document.querySelector("#win").classList.remove("hidden");
-  document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
+  document.querySelector("#playAgain").classList.remove("hidden");
+  document.querySelector("#playAgain").addEventListener("click", init);
 }
 
 //**************** DRAW SCREEN *******************/
 function draw() {
   console.log("draw");
-  document.querySelector("#draw").classList.remove("hidden");
-  document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
+  document.querySelector("#playAgain").classList.remove("hidden");
+  document.querySelector("#playAgain").addEventListener("click", init);
 }
