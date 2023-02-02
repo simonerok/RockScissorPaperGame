@@ -2,19 +2,19 @@ window.addEventListener("DOMContentLoaded", init);
 
 /* START */
 function init() {
-  console.log("init");  
+  console.log("init");
   getRandomChoice();
-  userChoise();
+  userChoice();
 }
 
 /* COMPUTER VALG */
 function getRandomChoice() {
-  console.log("GetRandomChoise");
+  console.log("GetRandomChoice");
 }
 
 /* USER VALG */
-function userChoise() {
-  console.log("GetRandomChoise");
+function userChoice() {
+  console.log("GetRandomChoice");
 }
 
 /* Win screen */
