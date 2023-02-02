@@ -129,3 +129,25 @@ button.paper {
 button.scissors {
   background-image: url(button_scissors.png);
 }
+
+/*ADDED CSS */
+#timer {
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+
+#playAgain {
+  font-size: 1rem;
+}
+
+#PlayAgain_btn h1 {
+  display: flex;
+  font-size: 2rem;
+  padding: 10px;
+}
+
+#PlayAgain_btn {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
