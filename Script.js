@@ -1,6 +1,8 @@
-/* SIDEN VISES */
+/* START */
 function init() {
   console.log("init");
+
+  window.addEventListener("DOMContentLoaded", init);
 }
 
 /* COMPUTER VALG */
@@ -12,3 +14,9 @@ function getRandomChoice() {
 function userChoise() {
   console.log("GetRandomChoise");
 }
+
+/* Win screen */
+
+/* Loose screen */
+
+/* Draw screen */
