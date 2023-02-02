@@ -21,7 +21,7 @@ h1 {
   --rot: 1;
 }
 
-#player2 {
+#cpu {
   --rot: -1;
 }
 
