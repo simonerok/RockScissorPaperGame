@@ -134,3 +134,13 @@ button.scissors {
   font-size: 2rem;
   margin-left: 2rem;
 }
+
+#playAgain {
+  font-size: 1rem;
+}
+
+#PlayAgain_btn {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}

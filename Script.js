@@ -33,8 +33,37 @@ var visTimer = setInterval(function () {
   setTime -= 1;
 }, 1000);
 
-/* Win screen */
+//******************** FORUDSÆTNING FOR AT TABE OG VINDE *****************/
 
-/* Loose screen */
+let point = 2;
+let cpuPoint = 1;
 
-/* Draw screen */
+if (point <= 3) {
+  console.log("3 point");
+  youLoose();
+} else if (point == cpuPoint) {
+  draw();
+} else {
+  draw();
+}
+
+//**************** LOOSE SCREEN *******************/
+function youLoose() {
+  console.log("youLoose");
+  document.querySelector("#lose").classList.remove("hidden");
+  document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
+}
+
+//****************** WIN SCREEN ***************** //
+function youWin() {
+  console.log("youWin");
+  document.querySelector("#win").classList.remove("hidden");
+  document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
+}
+
+//**************** DRAW SCREEN *******************/
+function draw() {
+  console.log("draw");
+  document.querySelector("#draw").classList.remove("hidden");
+  document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
+}
