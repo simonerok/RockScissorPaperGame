@@ -1,8 +1,10 @@
+window.addEventListener("DOMContentLoaded", init);
+
 /* START */
 function init() {
-  console.log("init");
-
-  window.addEventListener("DOMContentLoaded", init);
+  console.log("init");  
+  getRandomChoice();
+  userChoise();
 }
 
 /* COMPUTER VALG */
