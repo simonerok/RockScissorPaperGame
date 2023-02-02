@@ -11,6 +11,14 @@
   <body>
     <h1>Rock, Paper, Scissors</h1>
     <div id="timer"></div>
+    <div id="scores" class="score">
+      <div class="playerSection">
+        <p id="playerScore">Player: 0</p>
+      </div>
+      <div class="computerSection">
+        <p id="computerScore">CPU: 0</p>
+      </div>
+    </div>
 
     <div id="gamefield">
       <div id="player1" class="player"></div>
@@ -23,9 +31,9 @@
     </div>
 
     <div id="buttons">
-      <button class="rock"></button>
-      <button class="paper"></button>
-      <button class="scissors"></button>
+      <button class="rock" class="choices"></button>
+      <button class="paper" class="choices"></button>
+      <button class="scissors" class="choices"></button>
     </div>
     <div id="PlayAgain_btn">
       <button id="playAgain" class="hidden"><h1>Play again</h1></button>

@@ -33,23 +33,90 @@ var visTimer = setInterval(function () {
   setTime -= 1;
 }, 1000);
 
-//******************** FORUDSÆTNING FOR AT TABE OG VINDE *****************/
+//******************** PLAY ROUND*****************/
+/* count score */
+let playerScore = 0;
+let cpuScore = 0;
 
-let point = 2;
-let cpuPoint = 1;
+const choices = document.querySelectorAll(".buttons");
+const scores = document.getElementById("point");
+const restart = document.getElementById("PlayAgain_btn");
 
-if (point <= 3) {
+function playRound() {
+  const playerChoice = userChoice();
+  const cpuChoice = getRandomChoice();
+  const winner = getWinner(userChoice, getRandomChoice);
+
+  console.log(userChoice, cpuChoice, winner, playerScore, cpuScore);
+}
+
+// Computer choice
+function getRandomChoice() {
+  let options = ["rock", "paper", "scissors"];
+  return options[Math.floor(Math.random() * options.length)];
+}
+
+// Get game winner
+function getWinner(p, c) {
+  if (p === c) {
+    return "draw";
+  } else if (p === "rock") {
+    if (c === "paper") {
+      cpuScore++;
+      return "computer";
+    } else {
+      playerScore++;
+      return "player";
+    }
+  } else if (p === "paper") {
+    if (c === "scissors") {
+      cpuScore++;
+      return "computer";
+    } else {
+      playerScore++;
+      return "player";
+    }
+  } else if (p === "scissors") {
+    if (c === "rock") {
+      cpuScore++;
+      return "computer";
+    } else {
+      playerScore++;
+      return "player";
+    }
+  }
+}
+
+// Show score
+function showScore() {
+  const showPlayerScore = document.getElementById("playerScore");
+  const showCPUScore = document.getElementById("computerScore");
+
+  showPlayerScore.textContent = `Player: ${playerScore}`;
+  showCPUScore.textContent = `Computer: ${cpuScore}`;
+}
+
+// Starter runde
+choices.forEach((choice) =>
+  choice.addEventListener("click", (event) => {
+    playRound(event);
+    updateScore();
+  })
+);
+
+//******************** CONDITION FOR WINNING OR LOOSING *****************/
+if (playerScore <= 3) {
   console.log("3 point");
-  youLoose();
-} else if (point == cpuPoint) {
+  youLose();
+} else if (playerScore == cpuPoint) {
   draw();
 } else {
-  draw();
+  youWin();
 }
 
 //**************** LOOSE SCREEN *******************/
-function youLoose() {
-  console.log("youLoose");
+function youLose() {
+  console.log("youLose");
   document.querySelector("#lose").classList.remove("hidden");
   document.querySelector("#playAgain").classList.remove("hidden").addEventListener("click", init);
 }
