@@ -10,9 +10,9 @@ function init() {
 }
 
 /* COMPUTER VALG */
-function getRandomChoice() {
+/* function getRandomChoice() {
   console.log("GetRandomChoice");
-}
+} */
 
 /* USER VALG */
 function userChoice() {
