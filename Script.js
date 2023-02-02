@@ -14,7 +14,7 @@ function getRandomChoice() {
 
 /* USER VALG */
 function userChoice() {
-  console.log("GetRandomChoice");
+  console.log("userChoice");
 }
 
 /* Win screen */
