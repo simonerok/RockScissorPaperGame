@@ -15,9 +15,7 @@ function init() {
 /* PLAYER VALG */
 function ButtonClickable() {
   const buttonContainer = document.querySelectorAll("#buttons button");
-  buttonContainer.forEach((button) =>
-    button.addEventListener("click", playerChoice)
-  );
+  buttonContainer.forEach((button) => button.addEventListener("click", playerChoice));
 }
 
 function playerChoice() {
@@ -182,20 +180,6 @@ function getWinner(buttonClicked, cpuChoice) {
   // }
   //  else {draw();}
 }
-//******************* TIMER ********************/
-//Sætter timer på 10 sek
-var setTime = 10;
-var visTimer = setInterval(function () {
-  if (setTime <= 0) {
-    //stopper timeren når 0 sek er nået
-    clearInterval(visTimer);
-    document.getElementById("timer").innerHTML = "Finished";
-    showScore();
-  } else {
-    document.getElementById("timer").innerHTML = setTime + " seconds remaining";
-  }
-  setTime -= 1;
-}, 1000);
 
 // Show score
 function showScore() {
